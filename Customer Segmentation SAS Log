@@ -1,0 +1,733 @@
+1                                                          The SAS System                              18:29 Tuesday, April 23, 2024
+
+NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M6) 
+      Licensed to SUFFOLK UNIVERSITY - T&R, Site 70031941.
+NOTE: This session is executing on the X64_SR12R2  platform.
+
+
+
+NOTE: Analytical products:
+      
+      SAS/STAT 15.1
+      SAS/ETS 15.1
+      SAS/OR 14.2
+      SAS/IML 15.1
+      SAS/QC 15.1
+
+NOTE: Additional host information:
+
+ X64_SR12R2 WIN 6.3.9600  Server
+
+NOTE: SAS Initialization used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+NOTE: The autoexec file, D:\SAS\Config\Lev1\SASApp\WorkspaceServer\autoexec.sas, was executed at server initialization.
+1          filename _emenv catalog 'sashelp.emwip.em_loadmacros.source';
+2          %inc _emenv;
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+NOTE: Fileref _FDSEP has been deassigned.
+NOTE: Fileref _TEMP has been deassigned.
+1088       filename _emenv;
+NOTE: Fileref _EMENV has been deassigned.
+1089       %let WIP_PROJPATH=%nrstr(M:\SASUserData\fds04890);
+1090       %let WIP_PROJNAME=%nrstr(Customer Segmentation);
+1091       proc display c=sashelp.emwip.em_init.scl; run;
+
+7628       %let SYSCC=0;
+7629       options VBUFSIZE= 64M;
+NOTE: PROCEDURE DISPLAY used (Total process time):
+      real time           0.33 seconds
+      cpu time            0.32 seconds
+      
+
+2 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+WARNING: End of file.
+WARNING: End of file.
+WARNING: End of file.
+WARNING: End of file.
+7631       %let SYSCC=0;
+7632       %let SYSRC=0;
+7633       %let EMEXCEPTIONSTRING=;
+7634       %let SYSMSG=;
+7635       %em_diagram(action=open, projpath=%nrstr(M:\SASUserData\fds04890), projname=%nrstr(Customer Segmentation), dgmId=EMWS1, userId=%nrbquote(fds04890), sessionid=cd1030d3-c30f-4e35-8aed-255e2af8c7f9, outfile=DiagramOpenResponse.xml);
+NOTE: Fileref _DGMFRF has been deassigned.
+WIP_ACTION:
+DGMID: EMWS1
+LOCKFILE: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\System\wsopen.lck
+NOTE: Libref EMWS1 was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1
+7647       %let _EM_TREECONVERSION=0;
+7648       data _null_;
+7649       set EMWS1.EM_NODEID end=eof;
+7650       where upcase(Component) ='DECISIONTREE' and CLASS = 'SASHELP.EMMODL.DECISIONTREE.CLASS';
+7651       if eof then call symput('_EM_TREECONVERSION', '1');
+7652       run;
+
+NOTE: There were 0 observations read from the data set EMWS1.EM_NODEID.
+      WHERE (UPCASE(Component)='DECISIONTREE') and (CLASS='SASHELP.EMMODL.DECISIONTREE.CLASS');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+treeconversion=0 
+7653       %let syscc=0;
+7654       filename _wipchk catalog "EMWS1.CNTRL.test.source";
+7655       data _null_;
+7656       file _wipchk;
+7657       put '/* Test */';
+7658       run;
+
+NOTE: The file _WIPCHK is:
+      Catalog Name=EMWS1.CNTRL.TEST.SOURCE,
+      Catalog Page Size=4096,
+      Number of Catalog Pages=5,
+      Created=Sat, Mar 23, 2024 05:10:30 PM,
+      Last Modified=Sun, Mar 24, 2024 06:01:57 PM,
+      Filename=M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\cntrl.sas7bcat,
+      Release Created=9.0401M6,
+      Host Created=X64_SR12R2,
+      Owner Name=BUILTIN\Administrators,
+      File Size=            21KB,
+      File Size (bytes)=21504
+
+NOTE: 1 record was written to the file _WIPCHK.
+      The minimum record length was 10.
+      The maximum record length was 10.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+7659       data _null_;
+7660       rc = fdelete('_wipchk');
+7661       run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+7662       filename _wipchk;
+NOTE: Fileref _WIPCHK has been deassigned.
+7663       filename _wipxml 'C:\Users\fds04890\AppData\Local\Temp\SAS Temporary Files\_TD12480_SRV-BI-SAS_\Prc2\DiagramOpenResponse.xml' encoding="UTF-8" NOBOM;
+3 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+WARNING: End of file.
+WARNING: End of file.
+7664       %let SYSCC=0;
+7665       %let SYSRC=0;
+7666       %let EMEXCEPTIONSTRING=;
+7667       %let SYSMSG=;
+7668       %em_diagram(action=SETORIENTATION, projpath=%nrstr(M:\SASUserData\fds04890), projname=%nrstr(Customer Segmentation), dgmId=EMWS1, sessionid=cd1030d3-c30f-4e35-8aed-255e2af8c7f9, orientation=VERTICAL);
+NOTE: Fileref _DGMFRF has been deassigned.
+WIP_ACTION: OPEN
+DGMID: EMWS1
+LOCKFILE: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\System\wsopen.lck
+4 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+WARNING: End of file.
+WARNING: End of file.
+7680       %let SYSCC=0;
+7681       %let SYSRC=0;
+7682       %let EMEXCEPTIONSTRING=;
+7683       %let SYSMSG=;
+7684       %em_diagram(action=getreportsmeta, projpath=%nrstr(M:\SASUserData\fds04890), projname=%nrstr(Customer Segmentation), dgmId=EMWS1, nodeid=Tree, outfile=DiagramGetReportMetadata.xml);
+NOTE: Fileref _DGMFRF has been deassigned.
+WIP_ACTION: SETORIENTATION
+DGMID: EMWS1
+LOCKFILE: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\System\wsopen.lck
+7696       data _null_;
+7697       set EMWS1.EM_NODEID;
+7698       where upcase(NODEID)=upcase("Tree");
+7699       call symput('_EMCLASS', CLASS);
+7700       run;
+
+NOTE: There were 1 observations read from the data set EMWS1.EM_NODEID.
+      WHERE UPCASE(NODEID)='TREE';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+7701       %let EM_MACROS=Y;
+7702       filename temp catalog 'sashelp.emutil.em_loadrunmacros.source';
+7703       %include temp;
+NOTE: ALT_TOOLS Macros loaded
+NOTE: Test usage by running the EM_TEST macro
+NOTE: Fileref _TMPHPDM has been deassigned.
+NOTE: Fileref _TMPHPDM has been deassigned.
+11492      filename temp;
+NOTE: Fileref TEMP has been deassigned.
+11494      filename _wipxml 'C:\Users\fds04890\AppData\Local\Temp\SAS Temporary Files\_TD12480_SRV-BI-SAS_\Prc2\DiagramGetReportMetadata.xml' encoding="UTF-8" NOBOM;
+5 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+WARNING: End of file.
+WARNING: End of file.
+WARNING: End of file.
+WARNING: End of file.
+11495      %let SYSCC=0;
+11496      %let SYSRC=0;
+11497      %let EMEXCEPTIONSTRING=;
+11498      %let SYSMSG=;
+11499      %exploreobs(data=EMWS1.Tree_EMREPORTFIT);
+NOTE: EXPLOREOBS EMWS1.Tree_EMREPORTFIT : vars= 7 : recl= 384 : max=20000 : def= 2000
+6 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+11500      %let SYSCC=0;
+11501      %let SYSRC=0;
+11502      %let EMEXCEPTIONSTRING=;
+11503      %let SYSMSG=;
+11504      %EM_getFormats(data=EMWS1.Tree_EMREPORTFIT);
+
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The data set WORK._VARS_ has 7 observations and 2 variables.
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 0 observations read from the data set WORK._VARS_.
+      WHERE fmtname not = ' ';
+NOTE: The data set WORK._VARS_ has 0 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+7 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+NOTE: The data set EMWS1.TREE_EMREPORTFIT has been updated.  There were 0 observations rewritten, 0 observations added and 0 observations deleted.
+WARNING: End of file.
+WARNING: End of file.
+11505      %let SYSCC=0;
+11506      %let SYSRC=0;
+11507      %let EMEXCEPTIONSTRING=;
+11508      %let SYSMSG=;
+11509      %exploreobs(data=EMWS1.Tree_TREE_PLOT);
+NOTE: EXPLOREOBS EMWS1.Tree_TREE_PLOT : vars= 36 : recl= 1376 : max=10000 : def= 1000
+8 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+11510      %let SYSCC=0;
+11511      %let SYSRC=0;
+11512      %let EMEXCEPTIONSTRING=;
+11513      %let SYSMSG=;
+11514      %EM_getFormats(data=EMWS1.Tree_TREE_PLOT);
+
+NOTE: Deleting WORK._VARS_ (memtype=DATA).
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: The data set WORK._VARS_ has 36 observations and 2 variables.
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 0 observations read from the data set WORK._VARS_.
+      WHERE fmtname not = ' ';
+NOTE: The data set WORK._VARS_ has 0 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+9 The SAS System                                                                                                                                                                                                                   18:29 Tuesday, April 23, 202
+4
+
+NOTE: The data set EMWS1.TREE_TREE_PLOT has been updated.  There were 0 observations rewritten, 0 observations added and 0 observations deleted.
+11515      %let SYSCC=0;
+11516      %let SYSRC=0;
+11517      %let EMEXCEPTIONSTRING=;
+11518      %let SYSMSG=;
+11519      %exploreobs(data=EMWS1.Tree_EMRANK);
+NOTE: EXPLOREOBS EMWS1.Tree_EMRANK : vars= 35 : recl= 536 : max=20000 : def= 2000
+10 The SAS System                                                                                                                                                                                                                  18:29 Tuesday, April 23, 202
+4
+
+11520      %let SYSCC=0;
+11521      %let SYSRC=0;
+11522      %let EMEXCEPTIONSTRING=;
+11523      %let SYSMSG=;
+11524      %EM_getFormats(data=EMWS1.Tree_EMRANK);
+
+NOTE: Deleting WORK._VARS_ (memtype=DATA).
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: The data set WORK._VARS_ has 35 observations and 2 variables.
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: There were 0 observations read from the data set WORK._VARS_.
+      WHERE fmtname not = ' ';
+NOTE: The data set WORK._VARS_ has 0 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11 The SAS System                                                                                                                                                                                                                  18:29 Tuesday, April 23, 202
+4
+
+NOTE: The data set EMWS1.TREE_EMRANK has been updated.  There were 0 observations rewritten, 0 observations added and 0 observations deleted.
+11525      %let SYSCC=0;
+11526      %let SYSRC=0;
+11527      %let EMEXCEPTIONSTRING=;
+11528      %let SYSMSG=;
+11529      %em_diagram(action=setproperties, projpath=%nrstr(M:\SASUserData\fds04890), projname=%nrstr(Customer Segmentation), dgmId=EMWS1, requestFile=DiagramSetPropertiesRequest.xml);
+NOTE: Fileref _DGMFRF has been deassigned.
+WIP_ACTION: GETREPORTSMETA
+DGMID: EMWS1
+LOCKFILE: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\System\wsopen.lck
+11541      %global EM_REFRESH_PROPERTY;
+11542      %let EM_REFRESH_PROPERTY=N;
+11543      %let syscc=0;
+11544      data WORK._EMVISUALPROPERTIES;
+11545      length NODEID CLASS COMPONENT $32 X Y 8 LABEL $81;
+11546      NODEID = "CNTRL";
+11547      CLASS='';
+11548      component='';
+11549      X = 671;
+11550      Y= 280;
+11551      LABEL = "Control Point";
+11552      output;
+11553      NODEID = "FIMPORT";
+11554      CLASS='';
+11555      component='';
+11556      X = 645;
+11557      Y= 35;
+11558      LABEL = "Customer Segmentation";
+11559      output;
+11560      NODEID = "GrfExpl";
+11561      CLASS='';
+11562      component='';
+11563      X = 800;
+11564      Y= 126;
+11565      LABEL = "Graph Explore";
+11566      output;
+11567      NODEID = "MdlComp2";
+11568      CLASS='';
+11569      component='';
+11570      X = 708;
+11571      Y= 515;
+11572      LABEL = "Model Comparison";
+11573      output;
+11574      NODEID = "Neural";
+11575      CLASS='';
+11576      component='';
+11577      X = 713;
+11578      Y= 393;
+11579      LABEL = "Neural Network";
+11580      output;
+11581      NODEID = "Part";
+11582      CLASS='';
+11583      component='';
+11584      X = 660;
+11585      Y= 194;
+11586      LABEL = "Data Partition";
+11587      output;
+11588      NODEID = "Reg";
+11589      CLASS='';
+11590      component='';
+11591      X = 932;
+11592      Y= 390;
+11593      LABEL = "Regression";
+11594      output;
+11595      NODEID = "Stat";
+11596      CLASS='';
+11597      component='';
+11598      X = 653;
+11599      Y= 125;
+11600      LABEL = "StatExplore";
+11601      output;
+11602      NODEID = "Tree";
+11603      CLASS='';
+11604      component='';
+11605      X = 531;
+11606      Y= 392;
+11607      LABEL = "Decision Tree";
+11608      output;
+11609      run;
+
+NOTE: The data set WORK._EMVISUALPROPERTIES has 9 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11610      proc sort data=WORK._EMVISUALPROPERTIES;
+11611      by NODEID;
+11612      run;
+
+NOTE: There were 9 observations read from the data set WORK._EMVISUALPROPERTIES.
+NOTE: The data set WORK._EMVISUALPROPERTIES has 9 observations and 6 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11613      proc sort data=EMWS1.em_nodeid out=_tempNodeid;
+11614      by NODEID;
+11615      run;
+
+NOTE: There were 9 observations read from the data set EMWS1.EM_NODEID.
+NOTE: The data set WORK._TEMPNODEID has 9 observations and 8 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11616      data _tempNodeid;
+11617      update _tempNodeid(in=_a) WORK._EMVISUALPROPERTIES(in=_b);
+11618      by NODEID;
+11619      if _a then output;
+11620      run;
+
+NOTE: There were 9 observations read from the data set WORK._TEMPNODEID.
+NOTE: There were 9 observations read from the data set WORK._EMVISUALPROPERTIES.
+NOTE: The data set WORK._TEMPNODEID has 9 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11621      data EMWS1.em_nodeid;
+11622      set _tempNodeid;
+11623      run;
+
+NOTE: There were 9 observations read from the data set WORK._TEMPNODEID.
+NOTE: The data set EMWS1.EM_NODEID has 9 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11624      proc datasets lib=WORK nolist;
+11625      delete _tempNodeid _EMVISUALPROPERTIES;
+11626      run;
+
+NOTE: Deleting WORK._TEMPNODEID (memtype=DATA).
+NOTE: Deleting WORK._EMVISUALPROPERTIES (memtype=DATA).
+11627      quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+12 The SAS System                                                                                                                                                                                                                  18:29 Tuesday, April 23, 202
+4
+
+11628      %let SYSCC=0;
+11629      %let SYSRC=0;
+11630      %let EMEXCEPTIONSTRING=;
+11631      %let SYSMSG=;
+11632      %em_diagram(action=SAVEASXML, projpath=%nrstr(M:\SASUserData\fds04890), projname=%nrstr(Customer Segmentation), dgmId=EMWS1, sessionid=cd1030d3-c30f-4e35-8aed-255e2af8c7f9, outfile=DiagramSaveAsXMLResponse.xml);
+NOTE: Fileref _DGMFRF has been deassigned.
+WIP_ACTION: SETPROPERTIES
+DGMID: EMWS1
+LOCKFILE: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\System\wsopen.lck
+11644      %let _EM_TREECONVERSION=0;
+11645      data _null_;
+11646      set EMWS1.EM_NODEID end=eof;
+11647      where upcase(Component) ='DECISIONTREE' and CLASS = 'SASHELP.EMMODL.DECISIONTREE.CLASS';
+11648      if eof then call symput('_EM_TREECONVERSION', '1');
+11649      run;
+
+NOTE: There were 0 observations read from the data set EMWS1.EM_NODEID.
+      WHERE (UPCASE(Component)='DECISIONTREE') and (CLASS='SASHELP.EMMODL.DECISIONTREE.CLASS');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+1 
+1 
+1 
+11650      data WORK.FIMPORT_VARSETDEFAULT;
+11651      length ROLE $32;
+11652      length LEVEL $10;
+11653      length REPORT $1;
+11654      label REPORT = "Report";
+11655      length DROP $1;
+11656      length ORDER $8;
+11657      set EMWS1.FIMPORT_EMCMETADEFAULT;
+11658      run;
+
+NOTE: There were 20 observations read from the data set EMWS1.FIMPORT_EMCMETADEFAULT.
+NOTE: The data set WORK.FIMPORT_VARSETDEFAULT has 20 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11679      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\FIMPORT\USERTRAINCODE.sas";
+11680      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\FIMPORT\VARIABLESETDELTA.txt";
+11681      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\FIMPORT\DELTACODE.txt";
+11682      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\FIMPORT\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11683      data WORK.GrfExpl_VARSETDEFAULT;
+11684      length USE $1;
+11685      label USE = "Use";
+11686      length REPORT $1;
+11687      label REPORT = "Report";
+11688      length SAMPLEROLE $14;
+11689      set EMWS1.FIMPORT_CMeta_TRAIN;
+11690      run;
+
+NOTE: Variable USE is uninitialized.
+NOTE: Variable SAMPLEROLE is uninitialized.
+NOTE: There were 20 observations read from the data set EMWS1.FIMPORT_CMETA_TRAIN.
+NOTE: The data set WORK.GRFEXPL_VARSETDEFAULT has 20 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11698      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\GrfExpl\USERTRAINCODE.sas";
+11699      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\GrfExpl\EMNOTES.txt" encoding="UTF-8" NOBOM;
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL SETMETADATA >> 
+NOTE: There were 1 observations read from the data set EMWS1.TREE_EMINFO.
+      WHERE KEY='MODEL';
+NOTE: The data set WORK.EMINFO41D00HJ8 has 1 observations and 3 variables.
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL numElements >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL SETMETADATA >> 
+NOTE: There were 1 observations read from the data set EMWS1.TREE_EMINFO.
+      WHERE (TARGET='Segmentation_Group') and (KEY='DECMETA');
+NOTE: The data set WORK.EMINFO41DBUCZI has 1 observations and 3 variables.
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL numElements >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL SETMETADATA >> 
+NOTE: There were 1 observations read from the data set EMWS1.NEURAL_EMINFO.
+      WHERE KEY='MODEL';
+NOTE: The data set WORK.EMINFO40QD2CX4 has 1 observations and 3 variables.
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL numElements >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL SETMETADATA >> 
+NOTE: There were 1 observations read from the data set EMWS1.NEURAL_EMINFO.
+      WHERE (TARGET='Segmentation_Group') and (KEY='DECMETA');
+NOTE: The data set WORK.EMINFO41DI3NCB has 1 observations and 3 variables.
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL numElements >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL SETMETADATA >> 
+NOTE: There were 1 observations read from the data set EMWS1.REG_EMINFO.
+      WHERE KEY='MODEL';
+NOTE: The data set WORK.EMINFO41N71RMH has 1 observations and 3 variables.
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL numElements >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL SETMETADATA >> 
+NOTE: There were 1 observations read from the data set EMWS1.REG_EMINFO.
+      WHERE (TARGET='Segmentation_Group') and (KEY='DECMETA');
+NOTE: The data set WORK.EMINFO42827IDE has 1 observations and 3 variables.
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL numElements >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+11700      data WORK.MdlComp2_VARSETDEFAULT;
+11701      length USE $1 NAME $32 ROLE $32 LEVEL $10 EVENT $32 LABEL $200;
+11702      NAME = "Segmentation_Group";
+11703      ROLE="TARGET";
+11704      LEVEL = 'NOMINAL';
+11705      EVENT = 'SEGMENT5';
+11706      LABEL = 'Segmentation Group';
+11707      output;
+11708      NAME = "Segmentation_Group";
+11709      ROLE="TARGET";
+11710      LEVEL = 'NOMINAL';
+11711      EVENT = 'SEGMENT5';
+11712      LABEL = 'Segmentation Group';
+11713      output;
+11714      NAME = "Segmentation_Group";
+11715      ROLE="TARGET";
+11716      LEVEL = 'NOMINAL';
+11717      EVENT = 'SEGMENT5';
+11718      LABEL = 'Segmentation Group';
+11719      output;
+11720      run;
+
+NOTE: Variable USE is uninitialized.
+NOTE: The data set WORK.MDLCOMP2_VARSETDEFAULT has 3 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11721      proc sort data=WORK.MdlComp2_VARSETDEFAULT nodupkey NOTHREADS;
+11722      by NAME LEVEL;
+11723      run;
+
+NOTE: There were 3 observations read from the data set WORK.MDLCOMP2_VARSETDEFAULT.
+NOTE: 2 observations with duplicate key values were deleted.
+NOTE: The data set WORK.MDLCOMP2_VARSETDEFAULT has 1 observations and 6 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11724      data WORK.MdlComp2_VARSETDEFAULT;
+11725      set WORK.MdlComp2_VARSETDEFAULT;
+11726      if _N_ = 1 then USE = "Y";
+11727      else USE = "N";
+11728      run;
+
+NOTE: There were 1 observations read from the data set WORK.MDLCOMP2_VARSETDEFAULT.
+NOTE: The data set WORK.MDLCOMP2_VARSETDEFAULT has 1 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11736      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\MdlComp2\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11737      data WORK.Neural_VARSETDEFAULT;
+11738      length USE $1;
+11739      label USE = "Use";
+11740      length REPORT $1;
+11741      label REPORT = "Report";
+11742      set EMWS1.Part_CMeta_TRAIN;
+11743      where((ROLE="TARGET" and LEVEL ne "UNARY") or ROLE in("INPUT" "REJECTED" "FREQ"));
+11744      run;
+
+NOTE: Variable USE is uninitialized.
+NOTE: There were 20 observations read from the data set EMWS1.PART_CMETA_TRAIN.
+      WHERE ((ROLE='TARGET') and (LEVEL not = 'UNARY')) or ROLE in ('FREQ', 'INPUT', 'REJECTED');
+NOTE: The data set WORK.NEURAL_VARSETDEFAULT has 20 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11752      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\Neural\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11753      data WORK.Part_VARSETDEFAULT;
+11754      length PARTITIONROLE $14;
+11755      set EMWS1.Stat_CMeta_TRAIN;
+11756      run;
+
+NOTE: Variable PARTITIONROLE is uninitialized.
+NOTE: There were 20 observations read from the data set EMWS1.STAT_CMETA_TRAIN.
+NOTE: The data set WORK.PART_VARSETDEFAULT has 20 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+11764      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\Part\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11765      data WORK.Reg_VARSETDEFAULT;
+11766      length USE $1;
+11767      label USE = "Use";
+11768      length REPORT $1;
+11769      label REPORT = "Report";
+11770      set EMWS1.Part_CMeta_TRAIN;
+11771      where((ROLE="TARGET" and LEVEL ne "UNARY") or ROLE in("INPUT" "REJECTED" "FREQ"));
+11772      run;
+
+NOTE: Variable USE is uninitialized.
+NOTE: There were 20 observations read from the data set EMWS1.PART_CMETA_TRAIN.
+      WHERE ((ROLE='TARGET') and (LEVEL not = 'UNARY')) or ROLE in ('FREQ', 'INPUT', 'REJECTED');
+NOTE: The data set WORK.REG_VARSETDEFAULT has 20 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11780      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\Reg\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11781      data WORK.Stat_VARSETDEFAULT;
+11782      length USE $1;
+11783      label USE = "Use";
+11784      length REPORT $1;
+11785      label REPORT = "Report";
+11786      set EMWS1.FIMPORT_CMeta_TRAIN;
+11787      where(ROLE in("ID" "SEGMENT" "TARGET" "INPUT" "REJECTED" "PREDICT" "RESIDUAL" "DECISION" "FREQ"));
+11788      run;
+
+NOTE: Variable USE is uninitialized.
+NOTE: There were 20 observations read from the data set EMWS1.FIMPORT_CMETA_TRAIN.
+      WHERE ROLE in ('DECISION', 'FREQ', 'ID', 'INPUT', 'PREDICT', 'REJECTED', 'RESIDUAL', 'SEGMENT', 'TARGET');
+NOTE: The data set WORK.STAT_VARSETDEFAULT has 20 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11796      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\Stat\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11797      data WORK.Tree_VARSETDEFAULT;
+11798      length USE $1;
+11799      label USE = "Use";
+11800      length REPORT $1;
+11801      label REPORT = "Report";
+11802      set EMWS1.Part_CMeta_TRAIN;
+11803      run;
+
+NOTE: Variable USE is uninitialized.
+NOTE: There were 21 observations read from the data set EMWS1.PART_CMETA_TRAIN.
+NOTE: The data set WORK.TREE_VARSETDEFAULT has 21 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+11811      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\Tree\USERTRAINCODE.sas";
+11812      filename _extfile "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\Tree\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11813      filename _EMNOTES "M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1\EMNOTES.txt" encoding="UTF-8" NOBOM;
+11814      filename _EMNOTES;
+NOTE: Fileref _EMNOTES has been deassigned.
+11815      libname EMWS1 %nrstr("M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1");
+NOTE: Libref EMWS1 was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: M:\SASUserData\fds04890\Customer Segmentation\Workspaces\EMWS1
+11816      filename _wipxml 'C:\Users\fds04890\AppData\Local\Temp\SAS Temporary Files\_TD12480_SRV-BI-SAS_\Prc2\DiagramSaveAsXMLResponse.xml' encoding="UTF-8" NOBOM;
+13 The SAS System                                                                                                                                                                                                                  18:29 Tuesday, April 23, 202
+4
+
+WARNING: End of file.
